@@ -702,6 +702,32 @@ library {
   repo_index {
   }
 }
+library {
+  maven_library {
+    groupId: "com.journeyapps"
+    artifactId: "zxing-android-embedded"
+    version: "4.3.0"
+  }
+  digests {
+    sha256: "J\2603S\022|4\345\\\273\200\373\311\243@1\336\313\317\261\354^\217\231\031D\322\324\224b\0323"
+  }
+  repo_index {
+    value: 1
+  }
+}
+library {
+  maven_library {
+    groupId: "com.google.zxing"
+    artifactId: "core"
+    version: "3.4.1"
+  }
+  digests {
+    sha256: "\254\37203\214&&{l\253fU\t\302%\033\271n\203P\277\312\330\235Y\271I\272w\001\037\215"
+  }
+  repo_index {
+    value: 1
+  }
+}
 library_dependencies {
   library_dep_index: 1
   library_dep_index: 2
@@ -1044,11 +1070,16 @@ library_dependencies {
   library_dep_index: 4
   library_dep_index: 3
 }
+library_dependencies {
+  library_index: 58
+  library_dep_index: 59
+}
 module_dependencies {
   module_name: "base"
   dependency_index: 0
   dependency_index: 44
   dependency_index: 48
+  dependency_index: 58
 }
 repositories {
   maven_repo {
