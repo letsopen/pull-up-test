@@ -1,6 +1,8 @@
 package com.example.pulluptest;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,6 +28,13 @@ public class CustomCaptureActivity extends CaptureActivity {
         barcodeScannerView.decodeSingle(result -> {
             // 扫码成功后的处理
             setResult(RESULT_OK, getIntent().putExtra("SCAN_RESULT", result.getText()));
+            
+            // 添加震动效果
+            Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            if (vibrator != null && vibrator.hasVibrator()) {
+                vibrator.vibrate(300); // 震动300毫秒
+            }
+            
             finish();
         });
     }
@@ -41,4 +50,4 @@ public class CustomCaptureActivity extends CaptureActivity {
         super.onPause();
         barcodeScannerView.pause();
     }
-} 
+}

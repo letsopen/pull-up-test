@@ -3,6 +3,7 @@
     package="com.example.pulluptest">
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -27,4 +28,4 @@
             android:theme="@style/zxing_CaptureTheme"
             android:windowSoftInputMode="stateAlwaysHidden" />
     </application>
-</manifest> 
+</manifest>
