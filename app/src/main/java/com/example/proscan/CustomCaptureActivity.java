@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.journeyapps.barcodescanner.CaptureActivity;
 import com.journeyapps.barcodescanner.DecoratedBarcodeView;
+import com.journeyapps.barcodescanner.camera.CameraSettings;
 
 public class CustomCaptureActivity extends CaptureActivity {
     private DecoratedBarcodeView barcodeScannerView;
@@ -23,6 +24,13 @@ public class CustomCaptureActivity extends CaptureActivity {
         barcodeScannerView = findViewById(R.id.zxing_barcode_scanner);
         scanFrame = findViewById(R.id.scan_frame);
         scanText = findViewById(R.id.scan_text);
+
+        // 添加相机设置，启用自动对焦
+        CameraSettings cameraSettings = new CameraSettings();
+        cameraSettings.setAutoFocusEnabled(true);
+        cameraSettings.setContinuousFocusEnabled(true);
+        cameraSettings.setFocusMode(CameraSettings.FocusMode.CONTINUOUS);
+        barcodeScannerView.getBarcodeView().setCameraSettings(cameraSettings);
 
         // 设置扫码回调
         barcodeScannerView.decodeSingle(result -> {
