@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.example.pulluptest",
+  "applicationId": "com.example.proscan",
   "variantName": "release",
   "elements": [
     {

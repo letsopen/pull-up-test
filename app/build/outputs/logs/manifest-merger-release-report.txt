@@ -46,7 +46,7 @@ MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\User
 MERGED from [androidx.print:print:1.0.0] C:\Users\Administrator\.gradle\caches\8.11.1\transforms\13ad64a70593c465e419a5866358e1b2\transformed\print-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\Administrator\.gradle\caches\8.11.1\transforms\33370f6d0b80baad3665a8e6cf3abb63\transformed\jetified-annotation-experimental-1.3.0\AndroidManifest.xml:17:1-22:12
 	package
-		ADDED from C:\Users\Administrator\StudioProjects\pull-up-test\app\src\main\AndroidManifest.xml:3:5-37
+		ADDED from C:\Users\Administrator\StudioProjects\pull-up-test\app\src\main\AndroidManifest.xml:3:5-34
 		INJECTED from C:\Users\Administrator\StudioProjects\pull-up-test\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\Administrator\StudioProjects\pull-up-test\app\src\main\AndroidManifest.xml
@@ -90,7 +90,7 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Ad
 	android:supportsRtl
 		ADDED from C:\Users\Administrator\StudioProjects\pull-up-test\app\src\main\AndroidManifest.xml:13:9-35
 	android:label
-		ADDED from C:\Users\Administrator\StudioProjects\pull-up-test\app\src\main\AndroidManifest.xml:11:9-37
+		ADDED from C:\Users\Administrator\StudioProjects\pull-up-test\app\src\main\AndroidManifest.xml:11:9-33
 	android:roundIcon
 		ADDED from C:\Users\Administrator\StudioProjects\pull-up-test\app\src\main\AndroidManifest.xml:12:9-54
 	android:icon
@@ -99,7 +99,7 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Ad
 		ADDED from C:\Users\Administrator\StudioProjects\pull-up-test\app\src\main\AndroidManifest.xml:9:9-35
 	android:theme
 		ADDED from C:\Users\Administrator\StudioProjects\pull-up-test\app\src\main\AndroidManifest.xml:14:9-67
-activity#com.example.pulluptest.MainActivity
+activity#com.example.proscan.MainActivity
 ADDED from C:\Users\Administrator\StudioProjects\pull-up-test\app\src\main\AndroidManifest.xml:15:9-23:20
 	android:screenOrientation
 		ADDED from C:\Users\Administrator\StudioProjects\pull-up-test\app\src\main\AndroidManifest.xml:18:13-49
@@ -117,7 +117,7 @@ category#android.intent.category.LAUNCHER
 ADDED from C:\Users\Administrator\StudioProjects\pull-up-test\app\src\main\AndroidManifest.xml:21:17-77
 	android:name
 		ADDED from C:\Users\Administrator\StudioProjects\pull-up-test\app\src\main\AndroidManifest.xml:21:27-74
-activity#com.example.pulluptest.CustomCaptureActivity
+activity#com.example.proscan.CustomCaptureActivity
 ADDED from C:\Users\Administrator\StudioProjects\pull-up-test\app\src\main\AndroidManifest.xml:24:9-29:63
 	android:screenOrientation
 		ADDED from C:\Users\Administrator\StudioProjects\pull-up-test\app\src\main\AndroidManifest.xml:26:13-51
@@ -295,7 +295,7 @@ ADDED from [androidx.core:core:1.9.0] C:\Users\Administrator\.gradle\caches\8.11
 		ADDED from [androidx.core:core:1.9.0] C:\Users\Administrator\.gradle\caches\8.11.1\transforms\99f631ac21f8f84f0be8864d0aabbc79\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
 	android:name
 		ADDED from [androidx.core:core:1.9.0] C:\Users\Administrator\.gradle\caches\8.11.1\transforms\99f631ac21f8f84f0be8864d0aabbc79\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
-permission#com.example.pulluptest.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+permission#com.example.proscan.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
 ADDED from [androidx.core:core:1.9.0] C:\Users\Administrator\.gradle\caches\8.11.1\transforms\99f631ac21f8f84f0be8864d0aabbc79\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
 	android:protectionLevel
 		ADDED from [androidx.core:core:1.9.0] C:\Users\Administrator\.gradle\caches\8.11.1\transforms\99f631ac21f8f84f0be8864d0aabbc79\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
@@ -305,7 +305,7 @@ uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
 ADDED from [androidx.core:core:1.9.0] C:\Users\Administrator\.gradle\caches\8.11.1\transforms\99f631ac21f8f84f0be8864d0aabbc79\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
 	android:name
 		ADDED from [androidx.core:core:1.9.0] C:\Users\Administrator\.gradle\caches\8.11.1\transforms\99f631ac21f8f84f0be8864d0aabbc79\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
-uses-permission#com.example.pulluptest.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+uses-permission#com.example.proscan.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
 ADDED from [androidx.core:core:1.9.0] C:\Users\Administrator\.gradle\caches\8.11.1\transforms\99f631ac21f8f84f0be8864d0aabbc79\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
 	android:name
 		ADDED from [androidx.core:core:1.9.0] C:\Users\Administrator\.gradle\caches\8.11.1\transforms\99f631ac21f8f84f0be8864d0aabbc79\transformed\core-1.9.0\AndroidManifest.xml:26:22-94

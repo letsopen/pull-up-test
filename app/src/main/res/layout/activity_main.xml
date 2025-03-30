@@ -49,7 +49,7 @@
             android:id="@+id/buttonLaunch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="拉起"
+            android:text="访问"
             android:textColor="#FFFFFF"
             android:background="@drawable/button_launch_background" />
 

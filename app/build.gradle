@@ -6,7 +6,7 @@ android {
     compileSdkVersion 33
     
     defaultConfig {
-        applicationId "com.example.pulluptest"
+        applicationId "com.example.proscan" // 可选：修改应用包名
         minSdkVersion 29
         targetSdkVersion 33
         versionCode 1
@@ -24,7 +24,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    namespace 'com.example.pulluptest'
+    namespace 'com.example.proscan'
 }
 
 dependencies {
@@ -34,4 +34,4 @@ dependencies {
     
     // 二维码扫描
     implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
-} 
+}

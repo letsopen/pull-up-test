@@ -1,4 +1,4 @@
-package com.example.pulluptest;
+package com.example.proscan;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;

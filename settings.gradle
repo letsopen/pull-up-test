@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "pull-up-test"
+rootProject.name = "proscan"
 include ':app' 

@@ -1,0 +1,5 @@
+<resources>
+    <!-- 将应用名称改为ProScan -->
+    <string name="app_name">ProScan</string>
+    <!-- ... 其他字符串资源 ... -->
+</resources>
