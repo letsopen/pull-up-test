@@ -114,7 +114,7 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Ad
 	android:allowBackup
 		ADDED from C:\Users\Administrator\IdeaProjects\ProScan\app\src\main\AndroidManifest.xml:12:9-35
 	android:theme
-		ADDED from C:\Users\Administrator\IdeaProjects\ProScan\app\src\main\AndroidManifest.xml:17:9-67
+		ADDED from C:\Users\Administrator\IdeaProjects\ProScan\app\src\main\AndroidManifest.xml:17:9-65
 activity#com.example.proscan.MainActivity
 ADDED from C:\Users\Administrator\IdeaProjects\ProScan\app\src\main\AndroidManifest.xml:18:9-26:20
 	android:screenOrientation

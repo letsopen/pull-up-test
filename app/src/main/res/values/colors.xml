@@ -8,4 +8,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="primary_color">#2196F3</color>
+    <color name="background_color">#F5F5F5</color>
+    <color name="scan_button_color">#4CAF50</color>
+    <color name="paste_button_color">#FF9800</color>
+    <color name="launch_button_color">#2196F3</color>
 </resources> 
