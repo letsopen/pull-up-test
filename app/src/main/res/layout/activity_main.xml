@@ -1,58 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end">
+
+        <ImageButton
+            android:id="@+id/buttonHistory"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_recent_history"
+            android:contentDescription="历史记录" />
+
+    </LinearLayout>
 
     <EditText
         android:id="@+id/editTextUrl"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:gravity="top"
-        android:hint="请输入链接"
-        android:inputType="textMultiLine"
-        android:minLines="5"
-        android:padding="12dp"
-        android:background="@drawable/edit_text_background"
-        app:layout_constraintHeight_percent="0.4"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:hint="输入或扫描链接"
+        android:inputType="textUri"
+        android:maxLines="1" />
 
     <LinearLayout
-        android:id="@+id/buttonContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/buttonScan"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="扫描二维码"
-            android:textColor="#FFFFFF"
-            android:background="@drawable/button_scan_background" />
+            android:layout_weight="1"
+            android:text="扫描" />
 
         <Button
             android:id="@+id/buttonPaste"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="粘贴"
-            android:textColor="#FFFFFF"
-            android:background="@drawable/button_paste_background" />
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="粘贴" />
 
         <Button
             android:id="@+id/buttonLaunch"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="访问"
-            android:textColor="#FFFFFF"
-            android:background="@drawable/button_launch_background" />
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="访问" />
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout> 
+</LinearLayout> 

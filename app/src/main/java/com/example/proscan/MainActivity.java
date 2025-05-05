@@ -8,10 +8,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.proscan.db.HistoryDbHelper;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -20,16 +22,20 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonScan;
     private Button buttonPaste;
     private Button buttonLaunch;
+    private ImageButton buttonHistory;
+    private HistoryDbHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        dbHelper = new HistoryDbHelper(this);
         editTextUrl = findViewById(R.id.editTextUrl);
         buttonScan = findViewById(R.id.buttonScan);
         buttonPaste = findViewById(R.id.buttonPaste);
         buttonLaunch = findViewById(R.id.buttonLaunch);
+        buttonHistory = findViewById(R.id.buttonHistory);
 
         buttonScan.setOnClickListener(v -> {
             IntentIntegrator integrator = new IntentIntegrator(this);
@@ -49,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 ClipData.Item item = clipboard.getPrimaryClip().getItemAt(0);
                 String text = item.getText().toString();
                 editTextUrl.setText(text);
+                dbHelper.addHistory(text, "paste");
                 Toast.makeText(this, "已粘贴", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "剪贴板为空", Toast.LENGTH_SHORT).show();
@@ -68,6 +75,11 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "请输入链接", Toast.LENGTH_SHORT).show();
             }
         });
+
+        buttonHistory.setOnClickListener(v -> {
+            Intent intent = new Intent(this, HistoryActivity.class);
+            startActivity(intent);
+        });
     }
 
     @Override
@@ -77,7 +89,9 @@ public class MainActivity extends AppCompatActivity {
             if (result.getContents() == null) {
                 Toast.makeText(this, "扫描已取消", Toast.LENGTH_SHORT).show();
             } else {
-                editTextUrl.setText(result.getContents());
+                String content = result.getContents();
+                editTextUrl.setText(content);
+                dbHelper.addHistory(content, "scan");
                 Toast.makeText(this, "扫描成功", Toast.LENGTH_SHORT).show();
             }
         } else {
