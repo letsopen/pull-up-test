@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.journeyapps.barcodescanner.CaptureActivity;
@@ -12,7 +13,7 @@ import com.journeyapps.barcodescanner.camera.CameraSettings;
 
 public class CustomCaptureActivity extends CaptureActivity {
     private DecoratedBarcodeView barcodeScannerView;
-    private View scanFrame;
+    private ImageView scanFrame;
     private TextView scanText;
 
     @Override
@@ -21,8 +22,8 @@ public class CustomCaptureActivity extends CaptureActivity {
         setContentView(R.layout.activity_capture);
 
         barcodeScannerView = findViewById(R.id.zxing_barcode_scanner);
-        scanFrame = findViewById(R.id.scanFrame);
-        scanText = findViewById(R.id.scanText);
+        scanFrame = findViewById(R.id.scan_frame);
+        scanText = findViewById(R.id.scan_text);
 
         // 添加相机设置，启用自动对焦
         CameraSettings cameraSettings = new CameraSettings();

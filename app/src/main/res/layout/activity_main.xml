@@ -29,11 +29,12 @@
             android:id="@+id/buttonHistory"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@android:drawable/ic_menu_recent_history"
-            android:tint="@color/primary_color"
-            android:contentDescription="历史记录" />
+            android:contentDescription="历史记录"
+            android:padding="12dp"
+            android:src="@drawable/ic_history"
+            android:tint="@color/primary_color" />
 
     </LinearLayout>
 

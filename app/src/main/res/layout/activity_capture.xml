@@ -1,47 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background_color">
+    android:layout_height="match_parent">
 
     <com.journeyapps.barcodescanner.DecoratedBarcodeView
         android:id="@+id/zxing_barcode_scanner"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:zxing_preview_scaling_strategy="centerCrop" />
+        android:layout_height="match_parent" />
 
     <!-- 半透明遮罩 -->
     <View
-        android:id="@+id/maskView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#99000000" />
+        android:background="#80000000" />
 
-    <!-- 扫描框 -->
-    <View
-        android:id="@+id/scanFrame"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="48dp"
-        android:background="@drawable/scan_frame_background"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+    <!-- 取景框 -->
+    <ImageView
+        android:id="@+id/scan_frame"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:src="@drawable/scan_frame"
+        android:visibility="invisible"
+        tools:visibility="invisible" />
 
+    <!-- 提示文字 -->
     <TextView
-        android:id="@+id/scanText"
+        android:id="@+id/scan_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="请对准扫描"
-        android:textColor="@color/primary_color"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/scanFrame" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="280dp"
+        android:text="请将二维码放入框内"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout> 
+</FrameLayout> 
