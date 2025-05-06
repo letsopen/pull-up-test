@@ -46,7 +46,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         HistoryItem item = historyList.get(position);
         holder.textContent.setText(item.getContent());
-        holder.textType.setText(item.getType());
+        holder.textType.setText(item.getType().equals("scan") ? "扫码" : "粘贴");
         holder.textTime.setText(dateFormat.format(item.getTimestamp()));
 
         holder.itemView.setOnClickListener(v -> {

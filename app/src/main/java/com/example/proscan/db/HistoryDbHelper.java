@@ -58,12 +58,17 @@ public class HistoryDbHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                HistoryItem item = new HistoryItem(
-                    cursor.getLong(0),
-                    cursor.getString(1),
-                    cursor.getString(2),
-                    new Date(cursor.getLong(3))
-                );
+                int idIndex = cursor.getColumnIndex(COLUMN_ID);
+                int contentIndex = cursor.getColumnIndex(COLUMN_CONTENT);
+                int typeIndex = cursor.getColumnIndex(COLUMN_TYPE);
+                int timestampIndex = cursor.getColumnIndex(COLUMN_TIMESTAMP);
+
+                long id = cursor.getLong(idIndex);
+                String content = cursor.getString(contentIndex);
+                String type = cursor.getString(typeIndex);
+                long timestamp = cursor.getLong(timestampIndex);
+
+                HistoryItem item = new HistoryItem(id, content, type, new Date(timestamp));
                 historyList.add(item);
             } while (cursor.moveToNext());
         }
