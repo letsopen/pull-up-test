@@ -12,7 +12,6 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import com.example.proscan.db.HistoryDbHelper;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -30,13 +29,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // 设置Toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayShowTitleEnabled(false);
-        }
 
         dbHelper = new HistoryDbHelper(this);
         editTextUrl = findViewById(R.id.editTextUrl);
@@ -63,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 ClipData.Item item = clipboard.getPrimaryClip().getItemAt(0);
                 String text = item.getText().toString();
                 editTextUrl.setText(text);
-                dbHelper.addHistory(text, "paste");
+                dbHelper.addHistoryItem(text, "paste");
                 Toast.makeText(this, "已粘贴", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "剪贴板为空", Toast.LENGTH_SHORT).show();
@@ -99,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 String content = result.getContents();
                 editTextUrl.setText(content);
-                dbHelper.addHistory(content, "scan");
+                dbHelper.addHistoryItem(content, "scan");
                 Toast.makeText(this, "扫描成功", Toast.LENGTH_SHORT).show();
             }
         } else {

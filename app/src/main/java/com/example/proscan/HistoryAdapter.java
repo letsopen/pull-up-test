@@ -1,19 +1,14 @@
-package com.example.proscan.adapter;
+package com.example.proscan;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.proscan.R;
 import com.example.proscan.db.HistoryItem;
-
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -28,10 +23,13 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         void onDeleteClick(HistoryItem item);
     }
 
-    public HistoryAdapter(List<HistoryItem> historyList, OnItemClickListener listener) {
+    public HistoryAdapter(List<HistoryItem> historyList) {
         this.historyList = historyList;
-        this.listener = listener;
         this.dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
@@ -49,6 +47,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         holder.textType.setText(item.getType());
         holder.textTime.setText(dateFormat.format(item.getTimestamp()));
 
+        // 设置点击事件
         holder.itemView.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onItemClick(item);
@@ -72,11 +71,6 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     @Override
     public int getItemCount() {
         return historyList.size();
-    }
-
-    public void updateData(List<HistoryItem> newList) {
-        this.historyList = newList;
-        notifyDataSetChanged();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
