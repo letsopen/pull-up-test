@@ -9,8 +9,8 @@ android {
         applicationId "com.example.proscan" // 可选：修改应用包名
         minSdkVersion 29
         targetSdkVersion 33
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
     }
 
     signingConfigs {
