@@ -41,15 +41,10 @@ public class HistoryActivity extends AppCompatActivity {
         adapter = new HistoryAdapter(historyList, new HistoryAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(HistoryItem item) {
-                // 复制内容到剪贴板
-                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("URL", item.getContent());
-                clipboard.setPrimaryClip(clip);
-                
-                // 显示提示
-                Toast.makeText(HistoryActivity.this, "已复制到剪贴板", Toast.LENGTH_SHORT).show();
-                
-                // 返回主界面
+                // 返回主界面并传递内容
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("content", item.getContent());
+                setResult(RESULT_OK, resultIntent);
                 finish();
             }
 

@@ -93,30 +93,40 @@
         <Button
             android:id="@+id/btnVisit"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="访问链接" />
+            android:layout_height="64dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/button_visit_background"
+            android:text="访问链接"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="8dp">
+            android:layout_marginBottom="12dp">
 
             <Button
                 android:id="@+id/btnBarcode"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="64dp"
                 android:layout_weight="1"
-                android:layout_marginEnd="4dp"
-                android:text="生成条形码" />
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/button_barcode_background"
+                android:text="生成条形码"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/btnQRCode"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="64dp"
                 android:layout_weight="1"
-                android:layout_marginStart="4dp"
-                android:text="生成二维码" />
+                android:layout_marginStart="6dp"
+                android:background="@drawable/button_qrcode_background"
+                android:text="生成二维码"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
         </LinearLayout>
 
     </LinearLayout>

@@ -25,7 +25,7 @@ import android.graphics.Color;
 import android.app.Dialog;
 import android.widget.ImageView;
 import android.view.Window;
-import android.view.ViewGroup.LayoutParams;
+import android.view.ViewGroup;
 
 public class MainActivity extends AppCompatActivity {
     private EditText editTextUrl;
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
         buttonHistory.setOnClickListener(v -> {
             Intent intent = new Intent(this, HistoryActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, 1);
         });
 
         Button btnBarcode = findViewById(R.id.btnBarcode);
@@ -109,6 +109,12 @@ public class MainActivity extends AppCompatActivity {
                 editTextUrl.setText(content);
                 dbHelper.addHistoryItem(content, "scan");
                 Toast.makeText(this, "扫描成功", Toast.LENGTH_SHORT).show();
+            }
+        } else if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
+            // 处理从历史记录返回的内容
+            String content = data.getStringExtra("content");
+            if (content != null) {
+                editTextUrl.setText(content);
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
@@ -164,28 +170,46 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showBarcodeDialog(Bitmap bitmap) {
-        Dialog dialog = new Dialog(this);
+        Dialog dialog = new Dialog(this, android.R.style.Theme_Material_Light_NoActionBar);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         
+        // 创建白色背景的ImageView
         ImageView imageView = new ImageView(this);
+        imageView.setBackgroundColor(Color.WHITE);
         imageView.setImageBitmap(bitmap);
         
+        // 设置边距为屏幕宽度的5%
+        int margin = (int) (getResources().getDisplayMetrics().widthPixels * 0.05);
+        imageView.setPadding(margin, margin, margin, margin);
+        
         dialog.setContentView(imageView);
-        dialog.getWindow().setLayout(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
+        );
         
         imageView.setOnClickListener(v -> dialog.dismiss());
         dialog.show();
     }
 
     private void showQRCodeDialog(Bitmap bitmap) {
-        Dialog dialog = new Dialog(this);
+        Dialog dialog = new Dialog(this, android.R.style.Theme_Material_Light_NoActionBar);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         
+        // 创建白色背景的ImageView
         ImageView imageView = new ImageView(this);
+        imageView.setBackgroundColor(Color.WHITE);
         imageView.setImageBitmap(bitmap);
         
+        // 设置边距为屏幕宽度的5%
+        int margin = (int) (getResources().getDisplayMetrics().widthPixels * 0.05);
+        imageView.setPadding(margin, margin, margin, margin);
+        
         dialog.setContentView(imageView);
-        dialog.getWindow().setLayout(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
+        );
         
         imageView.setOnClickListener(v -> dialog.dismiss());
         dialog.show();
