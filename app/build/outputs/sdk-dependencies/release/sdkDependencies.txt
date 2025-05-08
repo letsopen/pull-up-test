@@ -719,10 +719,10 @@ library {
   maven_library {
     groupId: "com.google.zxing"
     artifactId: "core"
-    version: "3.4.1"
+    version: "3.5.2"
   }
   digests {
-    sha256: "\254\37203\214&&{l\253fU\t\302%\033\271n\203P\277\312\330\235Y\271I\272w\001\037\215"
+    sha256: "\373\251\001\"\265\325k\254\214\224|`\265\222R\021\260\330\324\fS\2331\t\2767t\360\217t\376\333"
   }
   repo_index {
     value: 1
@@ -1080,6 +1080,7 @@ module_dependencies {
   dependency_index: 44
   dependency_index: 48
   dependency_index: 58
+  dependency_index: 59
 }
 repositories {
   maven_repo {

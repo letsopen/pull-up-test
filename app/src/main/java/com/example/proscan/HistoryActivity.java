@@ -41,13 +41,16 @@ public class HistoryActivity extends AppCompatActivity {
         adapter = new HistoryAdapter(historyList, new HistoryAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(HistoryItem item) {
-                // 短按访问链接
-                try {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(item.getContent()));
-                    startActivity(intent);
-                } catch (Exception e) {
-                    Toast.makeText(HistoryActivity.this, "无法打开链接", Toast.LENGTH_SHORT).show();
-                }
+                // 复制内容到剪贴板
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("URL", item.getContent());
+                clipboard.setPrimaryClip(clip);
+                
+                // 显示提示
+                Toast.makeText(HistoryActivity.this, "已复制到剪贴板", Toast.LENGTH_SHORT).show();
+                
+                // 返回主界面
+                finish();
             }
 
             @Override
