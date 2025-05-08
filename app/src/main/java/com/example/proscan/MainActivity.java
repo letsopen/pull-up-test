@@ -26,6 +26,7 @@ import android.app.Dialog;
 import android.widget.ImageView;
 import android.view.Window;
 import android.view.ViewGroup;
+import android.graphics.Matrix;
 
 public class MainActivity extends AppCompatActivity {
     private EditText editTextUrl;
@@ -129,19 +130,37 @@ public class MainActivity extends AppCompatActivity {
         }
 
         try {
+            // 检查内容是否只包含合法字符
+            if (!content.matches("^[A-Za-z0-9\\-\\s]+$")) {
+                Toast.makeText(this, "条形码内容只能包含字母、数字、横杠和空格", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             MultiFormatWriter writer = new MultiFormatWriter();
-            BitMatrix bitMatrix = writer.encode(content, BarcodeFormat.CODE_128, 800, 200);
-            Bitmap bitmap = Bitmap.createBitmap(800, 200, Bitmap.Config.ARGB_8888);
+            // 使用屏幕高度作为宽度，屏幕宽度作为高度，以便旋转后充分利用屏幕空间
+            int screenWidth = getResources().getDisplayMetrics().widthPixels;
+            int screenHeight = getResources().getDisplayMetrics().heightPixels;
+            BitMatrix bitMatrix = writer.encode(content, BarcodeFormat.CODE_128, screenHeight, screenWidth);
             
-            for (int x = 0; x < 800; x++) {
-                for (int y = 0; y < 200; y++) {
-                    bitmap.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
+            // 创建位图并旋转90度
+            Bitmap bitmap = Bitmap.createBitmap(screenWidth, screenHeight, Bitmap.Config.ARGB_8888);
+            for (int x = 0; x < screenHeight; x++) {
+                for (int y = 0; y < screenWidth; y++) {
+                    bitmap.setPixel(y, x, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
                 }
             }
             
-            showBarcodeDialog(bitmap);
+            // 旋转90度
+            Matrix matrix = new Matrix();
+            matrix.postRotate(90);
+            Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+            bitmap.recycle();
+            
+            showBarcodeDialog(rotatedBitmap);
         } catch (WriterException e) {
-            Toast.makeText(this, "生成条形码失败", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "生成条形码失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(this, "生成条形码时发生错误", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -153,65 +172,91 @@ public class MainActivity extends AppCompatActivity {
         }
 
         try {
+            // 检查内容长度
+            if (content.length() > 3000) {
+                Toast.makeText(this, "二维码内容过长，请控制在3000字符以内", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             MultiFormatWriter writer = new MultiFormatWriter();
-            BitMatrix bitMatrix = writer.encode(content, BarcodeFormat.QR_CODE, 512, 512);
-            Bitmap bitmap = Bitmap.createBitmap(512, 512, Bitmap.Config.ARGB_8888);
+            // 使用屏幕宽度作为二维码尺寸
+            int size = getResources().getDisplayMetrics().widthPixels;
+            BitMatrix bitMatrix = writer.encode(content, BarcodeFormat.QR_CODE, size, size);
+            Bitmap bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
             
-            for (int x = 0; x < 512; x++) {
-                for (int y = 0; y < 512; y++) {
+            for (int x = 0; x < size; x++) {
+                for (int y = 0; y < size; y++) {
                     bitmap.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
                 }
             }
             
             showQRCodeDialog(bitmap);
         } catch (WriterException e) {
-            Toast.makeText(this, "生成二维码失败", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "生成二维码失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(this, "生成二维码时发生错误", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void showBarcodeDialog(Bitmap bitmap) {
-        Dialog dialog = new Dialog(this, android.R.style.Theme_Material_Light_NoActionBar);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        
-        // 创建白色背景的ImageView
-        ImageView imageView = new ImageView(this);
-        imageView.setBackgroundColor(Color.WHITE);
-        imageView.setImageBitmap(bitmap);
-        
-        // 设置边距为屏幕宽度的5%
-        int margin = (int) (getResources().getDisplayMetrics().widthPixels * 0.05);
-        imageView.setPadding(margin, margin, margin, margin);
-        
-        dialog.setContentView(imageView);
-        dialog.getWindow().setLayout(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT
-        );
-        
-        imageView.setOnClickListener(v -> dialog.dismiss());
-        dialog.show();
+        try {
+            Dialog dialog = new Dialog(this, android.R.style.Theme_Material_Light_NoActionBar);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            
+            // 创建白色背景的ImageView
+            ImageView imageView = new ImageView(this);
+            imageView.setBackgroundColor(Color.WHITE);
+            imageView.setImageBitmap(bitmap);
+            
+            // 设置边距为屏幕宽度的2.5%
+            int margin = (int) (getResources().getDisplayMetrics().widthPixels * 0.025);
+            imageView.setPadding(margin, margin, margin, margin);
+            
+            dialog.setContentView(imageView);
+            dialog.getWindow().setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            );
+            
+            imageView.setOnClickListener(v -> {
+                dialog.dismiss();
+                bitmap.recycle();
+            });
+            dialog.show();
+        } catch (Exception e) {
+            Toast.makeText(this, "显示条形码时发生错误", Toast.LENGTH_SHORT).show();
+            bitmap.recycle();
+        }
     }
 
     private void showQRCodeDialog(Bitmap bitmap) {
-        Dialog dialog = new Dialog(this, android.R.style.Theme_Material_Light_NoActionBar);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        
-        // 创建白色背景的ImageView
-        ImageView imageView = new ImageView(this);
-        imageView.setBackgroundColor(Color.WHITE);
-        imageView.setImageBitmap(bitmap);
-        
-        // 设置边距为屏幕宽度的5%
-        int margin = (int) (getResources().getDisplayMetrics().widthPixels * 0.05);
-        imageView.setPadding(margin, margin, margin, margin);
-        
-        dialog.setContentView(imageView);
-        dialog.getWindow().setLayout(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT
-        );
-        
-        imageView.setOnClickListener(v -> dialog.dismiss());
-        dialog.show();
+        try {
+            Dialog dialog = new Dialog(this, android.R.style.Theme_Material_Light_NoActionBar);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            
+            // 创建白色背景的ImageView
+            ImageView imageView = new ImageView(this);
+            imageView.setBackgroundColor(Color.WHITE);
+            imageView.setImageBitmap(bitmap);
+            
+            // 设置边距为屏幕宽度的2.5%
+            int margin = (int) (getResources().getDisplayMetrics().widthPixels * 0.025);
+            imageView.setPadding(margin, margin, margin, margin);
+            
+            dialog.setContentView(imageView);
+            dialog.getWindow().setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            );
+            
+            imageView.setOnClickListener(v -> {
+                dialog.dismiss();
+                bitmap.recycle();
+            });
+            dialog.show();
+        } catch (Exception e) {
+            Toast.makeText(this, "显示二维码时发生错误", Toast.LENGTH_SHORT).show();
+            bitmap.recycle();
+        }
     }
 } 
