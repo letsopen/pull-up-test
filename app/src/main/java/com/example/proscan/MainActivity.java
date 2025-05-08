@@ -131,8 +131,8 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             // 检查内容是否只包含合法字符
-            if (!content.matches("^[A-Za-z0-9\\-\\s]+$")) {
-                Toast.makeText(this, "条形码内容只能包含字母、数字、横杠和空格", Toast.LENGTH_SHORT).show();
+            if (!content.matches("^[\\x00-\\x7F]+$")) {
+                Toast.makeText(this, "条形码内容只能包含ASCII字符", Toast.LENGTH_SHORT).show();
                 return;
             }
 
